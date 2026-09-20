@@ -424,6 +424,7 @@ td strong { font-weight: 600; }
   font-size: .86rem;
   max-width: 380px;
   z-index: 100;
+  cursor: pointer;
   box-shadow: 0 12px 32px rgba(15, 20, 33, .28);
 }
 

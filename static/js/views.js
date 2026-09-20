@@ -13,12 +13,25 @@ const Views = (() => {
 
   const fmtMonto = (n) => "S/ " + Number(n || 0).toLocaleString("es-PE");
 
+  let toastTimer = null;
   function toast(mensaje) {
     const t = document.getElementById("toast");
     t.textContent = mensaje;
     t.hidden = false;
-    setTimeout(() => (t.hidden = true), 3200);
+    // Duración proporcional al texto: 6 s de base y +60 ms por cada carácter
+    // sobre 60, tope 14 s — así las recomendaciones largas del score se leen
+    // completas. Un clic sobre la notificación la cierra antes.
+    clearTimeout(toastTimer);
+    const duracion = Math.min(14000, 6000 + Math.max(0, mensaje.length - 60) * 60);
+    toastTimer = setTimeout(() => (t.hidden = true), duracion);
   }
+  document.addEventListener("click", (e) => {
+    const t = document.getElementById("toast");
+    if (e.target === t && !t.hidden) {
+      clearTimeout(toastTimer);
+      t.hidden = true;
+    }
+  });
 
   function modal(html) {
     const capa = document.createElement("div");
