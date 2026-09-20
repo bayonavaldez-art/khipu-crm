@@ -18,7 +18,7 @@ Este proyecto entrega una **aplicación web inteligente** que resuelve ese
 problema: un CRM institucional con **scoring predictivo de conversión
 (machine learning)**, **clasificación automática de mensajes (NLP)** y
 **alertas de seguimiento**, desplegado en staging y cubierto por 38 pruebas
-automatizadas.
+automatizadas con exito.
 
 ## 2. Arquitectura
 
