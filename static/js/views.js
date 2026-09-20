@@ -329,7 +329,9 @@ const Views = (() => {
 
   // ================= TAREAS Y ALERTAS =================
   async function tareas(el) {
-    const [tareas, alertas] = await Promise.all([
+    // OJO: no llamar "tareas" a la lista local — taparía el nombre de esta
+    // función dentro de su propio ámbito (bug "tareas is not a function").
+    const [listaTareas, alertas] = await Promise.all([
       API.get("/tareas"),
       API.get("/alertas"),
     ]);
@@ -346,11 +348,11 @@ const Views = (() => {
             <strong>${esc(a.titulo)}</strong> · ${esc(a.contacto)} — ${esc(a.mensaje)}
           </div>`).join("")}` : "<p>Sin alertas de seguimiento activas.</p>"}
       <h3 style="margin:20px 0 10px">Tareas</h3>
-      ${tareas.length ? `
+      ${listaTareas.length ? `
         <table><thead><tr>
           <th>Tarea</th><th>Responsable</th><th>Fecha límite</th><th>Estado</th><th></th>
         </tr></thead><tbody>
-          ${tareas.map((t) => `
+          ${listaTareas.map((t) => `
             <tr>
               <td>${esc(t.titulo)}</td>
               <td>${esc(t.responsable || "—")}</td>
