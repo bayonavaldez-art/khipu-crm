@@ -1,0 +1,91 @@
+{
+  "modelo_seleccionado": "LogisticRegression",
+  "filas_dataset": 4000,
+  "distribucion_target": {
+    "convertido_1": 1781,
+    "convertido_0": 2219
+  },
+  "features_categoricas": [
+    "tipo_contacto",
+    "canal_origen",
+    "etapa_embudo"
+  ],
+  "features_numericas": [
+    "num_interacciones",
+    "tiempo_respuesta_promedio",
+    "dias_sin_interaccion"
+  ],
+  "limite_outlier_horas": 720,
+  "resultados": {
+    "LogisticRegression": {
+      "accuracy": 0.822,
+      "precision": 0.8141,
+      "recall": 0.7775,
+      "f1": 0.7954,
+      "roc_auc": 0.902,
+      "matriz_confusion": [
+        [
+          476,
+          79
+        ],
+        [
+          99,
+          346
+        ]
+      ]
+    },
+    "RandomForest": {
+      "accuracy": 0.811,
+      "precision": 0.8077,
+      "recall": 0.7551,
+      "f1": 0.7805,
+      "roc_auc": 0.8858,
+      "matriz_confusion": [
+        [
+          475,
+          80
+        ],
+        [
+          109,
+          336
+        ]
+      ]
+    }
+  },
+  "modelo": {
+    "LogisticRegression": {
+      "accuracy": 0.822,
+      "precision": 0.8141,
+      "recall": 0.7775,
+      "f1": 0.7954,
+      "roc_auc": 0.902,
+      "matriz_confusion": [
+        [
+          476,
+          79
+        ],
+        [
+          99,
+          346
+        ]
+      ]
+    },
+    "RandomForest": {
+      "accuracy": 0.811,
+      "precision": 0.8077,
+      "recall": 0.7551,
+      "f1": 0.7805,
+      "roc_auc": 0.8858,
+      "matriz_confusion": [
+        [
+          475,
+          80
+        ],
+        [
+          109,
+          336
+        ]
+      ]
+    }
+  }
+}
