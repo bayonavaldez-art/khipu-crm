@@ -18,9 +18,11 @@ class Settings:
 
     # Base de datos: SQLite por defecto (desarrollo), PostgreSQL en despliegue.
     _db_url = os.getenv("DATABASE_URL", "sqlite:///./khipu_crm.db")
-    # Render entrega "postgresql://..."; SQLAlchemy 2 usa el driver psycopg (v3).
-    if _db_url.startswith("postgresql://"):
+    # Render entrega "postgres://..." y SQLAlchemy 2 usa el driver psycopg (v3):
+    # ambos prefijos se normalizan antes de crear el engine.
+    if _db_url.startswith(("postgresql://", "postgres://")):
         _db_url = _db_url.replace("postgresql://", "postgresql+psycopg://", 1)
+        _db_url = _db_url.replace("postgres://", "postgresql+psycopg://", 1)
     DATABASE_URL = _db_url
 
     # Ruta de los artefactos de IA entrenados (pipeline de scoring y NLP).
