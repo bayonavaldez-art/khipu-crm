@@ -176,3 +176,16 @@ def test_campanas(client, admision_headers):
 
 def test_health(client):
     assert client.get("/health").json()["status"] == "ok"
+
+
+# ---------- Interfaz web ----------
+def test_pagina_login_carga_dependencias(client):
+    # Regresión: el login dejaba de funcionar si index.html no incluía api.js
+    html = client.get("/").text
+    assert "js/api.js" in html and "js/login.js" in html
+
+
+def test_pagina_app_carga_dependencias(client):
+    html = client.get("/app").text
+    for recurso in ["js/api.js", "js/views.js", "js/app.js", "vendor/chart.umd.js"]:
+        assert recurso in html, f"falta {recurso} en app.html"
