@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khipu CRM · Iniciar sesión</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="khipu-mark">𝒦</span>
+      <h1>Khipu CRM</h1>
+      <p class="subtitle">Académico-Comercial · Instituto Superior Khipu</p>
+    </div>
+    <form id="form-login">
+      <label for="username">Usuario</label>
+      <input type="text" id="username" autocomplete="username" required
+             placeholder="admin" minlength="3">
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" autocomplete="current-password" required
+             placeholder="••••••••" minlength="6">
+      <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+      <p id="login-error" class="error-msg" hidden></p>
+    </form>
+    <p class="login-hint">
+      Demo: <code>admin / Admin@123</code> ·
+      <code>admision / Admision@123</code>
+    </p>
+    <p class="login-api">
+      <a href="/docs" target="_blank">Documentación de la API (Swagger) →</a>
+    </p>
+  </div>
+  <script src="/static/js/login.js"></script>
+</body>
+</html>

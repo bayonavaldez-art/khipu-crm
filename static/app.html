@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khipu CRM · Panel</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="khipu-mark">𝒦</span>
+      <div>
+        <strong>Khipu CRM</strong>
+        <small>Académico-Comercial</small>
+      </div>
+    </div>
+    <nav id="menu">
+      <button class="nav-btn active" data-vista="dashboard">📊 Dashboard</button>
+      <button class="nav-btn" data-vista="contactos">👥 Contactos</button>
+      <button class="nav-btn" data-vista="oportunidades">🎯 Oportunidades</button>
+      <button class="nav-btn" data-vista="tareas">✅ Tareas y alertas</button>
+      <button class="nav-btn" data-vista="bot">🤖 KhipuBot (IA)</button>
+    </nav>
+    <div class="sidebar-footer">
+      <div id="user-info" class="user-info"></div>
+      <button id="btn-logout" class="btn btn-ghost btn-block">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section id="vista-dashboard" class="vista"></section>
+    <section id="vista-contactos" class="vista" hidden></section>
+    <section id="vista-oportunidades" class="vista" hidden></section>
+    <section id="vista-tareas" class="vista" hidden></section>
+    <section id="vista-bot" class="vista" hidden></section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/static/vendor/chart.umd.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/views.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
