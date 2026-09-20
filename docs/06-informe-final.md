@@ -88,9 +88,9 @@ con los días sin interacción (urgencia).
 
 ## 4. Pruebas
 
-38 pruebas automatizadas, todas aprobadas (~1.5 s): 11 unitarias del modelo
+40 pruebas automatizadas, todas aprobadas (~1.5 s): 11 unitarias del modelo
 (umbrales de métricas, coherencia de predicciones, clasificación por clase,
-rendimiento: 100 scores < 3 s) y 27 funcionales de la API (login, JWT,
+rendimiento: 100 scores < 3 s) y 29 funcionales de la API (login, JWT,
 roles, CRUD, interacciones, scoring persistido, KhipuBot, tareas, alertas,
 dashboard, códigos de error 401/403/404/422). Plan y evidencia:
 `04-plan-de-pruebas.md`.

@@ -60,10 +60,10 @@ recrea en cada sesión; el cliente de pruebas levanta la aplicación completa
 
 ```
 $ python -m pytest tests/ -v
-============================ 38 passed in 1.30s ============================
+============================ 40 passed in 1.30s ============================
 ```
 
-- Total: **38 pruebas aprobadas** (11 unitarias del modelo + 27 funcionales).
+- Total: **40 pruebas aprobadas** (11 unitarias del modelo + 29 funcionales).
 - Las 2 advertencias mostradas son deprecations internas de librerías
   (starlette/anyio), no afectan los resultados.
 - La ejecución completa tarda ~1.5 s.

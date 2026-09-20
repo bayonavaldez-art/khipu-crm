@@ -67,7 +67,7 @@ Pasos para desplegar en `docs/07-despliegue.md`.
 python -m pytest tests/ -v
 ```
 
-38 pruebas (unitarias del modelo de IA + funcionales de la API). Plan completo en `docs/04-plan-de-pruebas.md`.
+40 pruebas (unitarias del modelo de IA + funcionales de la API). Plan completo en `docs/04-plan-de-pruebas.md`.
 
 ## Estructura del proyecto
 
