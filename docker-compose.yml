@@ -1,0 +1,32 @@
+# Staging local completo: aplicación + PostgreSQL.
+# Uso: docker compose up --build  →  http://localhost:8000
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: khipu
+      POSTGRES_PASSWORD: khipu_staging
+      POSTGRES_DB: khipu_crm
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U khipu"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # SECRET_KEY de staging; en producción usar uno propio y secreto.
+      SECRET_KEY: staging-secret-no-usar-en-produccion
+      DATABASE_URL: postgresql+psycopg://khipu:khipu_staging@db:5432/khipu_crm
+      ALERTA_DIAS_SIN_INTERACCION: "7"
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

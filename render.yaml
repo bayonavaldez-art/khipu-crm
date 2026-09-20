@@ -1,0 +1,21 @@
+# Blueprint de Render — despliegue de staging.
+# Uso: Render → New → Blueprint → seleccionar este repositorio.
+services:
+  - type: web
+    name: khipu-crm
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true   # Render genera un secreto aleatorio
+      - key: DATABASE_URL
+        fromDatabase:
+          name: khipu-crm-db
+          property: connectionString
+      - key: ALERTA_DIAS_SIN_INTERACCION
+        value: "7"
+
+databases:
+  - name: khipu-crm-db
+    plan: free
