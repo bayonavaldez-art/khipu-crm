@@ -438,7 +438,7 @@ const Views = (() => {
             </div>
             <div style="margin-top:8px;font-size:.9rem">
               Confianza: <strong>${(r.confianza * 100).toFixed(1)}%</strong>
-              ${r.confianza < 0.5 ? "⚠️ (baja: revisar manualmente)" : ""}
+              ${r.confianza < 0.5 ? '<span style="color:var(--ambar)"> · baja: revisar manualmente</span>' : ""}
             </div>
             <div class="confianza-barra"><div style="width:${(r.confianza * 100).toFixed(1)}%"></div></div>
             ${r.contacto_id ? `<div style="margin-top:10px;font-size:.85rem">Contacto creado con ID ${r.contacto_id}</div>` : ""}
