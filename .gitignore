@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Entorno y secretos
+.env
+
+# Bases de datos locales
+*.db
+*.sqlite3
+
+# Dataset de entrenamiento (regenerable: python -m ml.generate_dataset, seed fija)
+ml/data/
+
+# Los artefactos entrenados (ml/artifacts) SÍ se versionan: los necesita el
+# despliegue para servir predicciones sin re-entrenar en cada build.
+
+# Sistema / editor
+.DS_Store
+.vscode/
+.idea/
+pytest_cache/
