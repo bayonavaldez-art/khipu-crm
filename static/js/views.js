@@ -68,10 +68,15 @@ const Views = (() => {
         labels: ["Nuevo", "Contactado", "Negociación", "Ganado", "Perdido"],
         datasets: [{
           data: ["nuevo", "contactado", "negociacion", "ganado", "perdido"].map((k) => d.embudo[k] || 0),
-          backgroundColor: ["#94a3b8", "#60a5fa", "#fbbf24", "#34d399", "#f87171"],
+          backgroundColor: ["#a8b0c0", "#5163a6", "#c2701d", "#1d7d4f", "#b4493c"],
+          borderRadius: 4,
         }],
       },
-      options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: "#eef0f4" } },
+                  x: { grid: { display: false } } },
+      },
     });
     graficos.tipos = new Chart(document.getElementById("chart-tipos"), {
       type: "doughnut",
@@ -79,10 +84,12 @@ const Views = (() => {
         labels: Object.keys(d.contactos_por_tipo),
         datasets: [{
           data: Object.values(d.contactos_por_tipo),
-          backgroundColor: ["#60a5fa", "#fbbf24", "#818cf8", "#34d399", "#f472b6"],
+          backgroundColor: ["#5163a6", "#c2701d", "#7c8ab0", "#1d7d4f", "#a8628f"],
+          borderColor: "#ffffff",
+          borderWidth: 2,
         }],
       },
-      options: { plugins: { legend: { position: "right" } } },
+      options: { plugins: { legend: { position: "right" } }, cutout: "62%" },
     });
   }
 
@@ -153,7 +160,7 @@ const Views = (() => {
         <label>Procedencia</label><input name="procedencia" placeholder="Colegio, campaña, ciudad…">
         <label>Notas</label><textarea name="notas" rows="2"></textarea>
         <div class="acciones">
-          <button type="button" class="btn" style="background:#e2e8f0" data-cerrar>Cancelar</button>
+          <button type="button" class="btn btn-linea" data-cerrar>Cancelar</button>
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </form>`);
@@ -247,7 +254,7 @@ const Views = (() => {
                     ? `<span class="score-pill ${claseScore(o.score_ia)}">${(o.score_ia * 100).toFixed(0)}%</span>`
                     : "—"}</td>
               <td>
-                <button class="btn btn-sm btn-verde" data-score="${o.id}">⚡ Calcular score</button>
+                <button class="btn btn-sm btn-verde" data-score="${o.id}">Calcular score</button>
                 <select data-etapa="${o.id}" style="width:auto;padding:4px 8px;font-size:.78rem">
                   ${["nuevo", "contactado", "negociacion", "ganado", "perdido"]
                     .map((e2) => `<option ${e2 === o.etapa ? "selected" : ""}>${e2}</option>`).join("")}
@@ -264,7 +271,7 @@ const Views = (() => {
             const r = await API.post(`/oportunidades/${b.dataset.score}/score`);
             toast(`${(r.probabilidad_conversion * 100).toFixed(0)}% · ${r.recomendacion}`);
             await cargarTabla();
-          } catch (err) { toast(err.message); b.disabled = false; b.textContent = "⚡ Calcular score"; }
+          } catch (err) { toast(err.message); b.disabled = false; b.textContent = "Calcular score"; }
         }));
 
       el.querySelectorAll("[data-etapa]").forEach((s) =>
@@ -298,7 +305,7 @@ const Views = (() => {
           <option>negociacion</option><option>ganado</option><option>perdido</option></select>
         <label>Monto estimado (S/)</label><input name="monto_estimado" type="number" min="0" step="0.01" value="0">
         <div class="acciones">
-          <button type="button" class="btn" style="background:#e2e8f0" data-cerrar>Cancelar</button>
+          <button type="button" class="btn btn-linea" data-cerrar>Cancelar</button>
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </form>`);
@@ -333,11 +340,11 @@ const Views = (() => {
         <button class="btn btn-primary" id="t-nueva">+ Nueva tarea</button>
       </div>
       ${alertas.total ? `
-        <h3 style="margin:8px 0">🔔 Alertas de seguimiento (${alertas.total}) · más de ${alertas.dias_limite} días sin interacción</h3>
+        <h3 style="margin:8px 0">Alertas de seguimiento (${alertas.total}) · más de ${alertas.dias_limite} días sin interacción</h3>
         ${alertas.alertas.map((a) => `
           <div class="alerta-item">
             <strong>${esc(a.titulo)}</strong> · ${esc(a.contacto)} — ${esc(a.mensaje)}
-          </div>`).join("")}` : "<p>No hay alertas de seguimiento activas. ✅</p>"}
+          </div>`).join("")}` : "<p>Sin alertas de seguimiento activas.</p>"}
       <h3 style="margin:20px 0 10px">Tareas</h3>
       ${tareas.length ? `
         <table><thead><tr>
@@ -372,7 +379,7 @@ const Views = (() => {
         <label>Título *</label><input name="titulo" required minlength="3">
         <label>Fecha límite</label><input name="fecha_limite" type="date">
         <div class="acciones">
-          <button type="button" class="btn" style="background:#e2e8f0" data-cerrar>Cancelar</button>
+          <button type="button" class="btn btn-linea" data-cerrar>Cancelar</button>
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </form>`);
@@ -406,7 +413,7 @@ const Views = (() => {
           <label style="display:flex;align-items:center;gap:6px;font-size:.85rem">
             <input type="checkbox" id="b-crear" style="width:auto"> Crear contacto
           </label>
-          <button class="btn btn-primary" id="b-clasificar">🤖 Clasificar</button>
+          <button class="btn btn-primary" id="b-clasificar">Clasificar mensaje</button>
         </div>
         <div id="b-resultado"></div>
         <div class="card" style="margin-top:24px">
@@ -434,7 +441,7 @@ const Views = (() => {
               ${r.confianza < 0.5 ? "⚠️ (baja: revisar manualmente)" : ""}
             </div>
             <div class="confianza-barra"><div style="width:${(r.confianza * 100).toFixed(1)}%"></div></div>
-            ${r.contacto_id ? `<div style="margin-top:10px;font-size:.85rem">✅ Contacto creado con ID ${r.contacto_id}</div>` : ""}
+            ${r.contacto_id ? `<div style="margin-top:10px;font-size:.85rem">Contacto creado con ID ${r.contacto_id}</div>` : ""}
           </div>`;
         if (r.contacto_id) toast("Contacto creado desde KhipuBot");
       } catch (err) { toast(err.message); }
